@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://b6iaky5xwmk8s"]
+
+[ext_resource type="Texture2D" uid="uid://bxqc800caen63" path="res://gameAssets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Idle.png" id="1_shb3b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok07u"]
+atlas = ExtResource("1_shb3b")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nekku"]
+atlas = ExtResource("1_shb3b")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hs33"]
+atlas = ExtResource("1_shb3b")
+region = Rect2(240, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skeu6"]
+atlas = ExtResource("1_shb3b")
+region = Rect2(360, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ptnh"]
+atlas = ExtResource("1_shb3b")
+region = Rect2(480, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1wal"]
+atlas = ExtResource("1_shb3b")
+region = Rect2(600, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vwfy"]
+atlas = ExtResource("1_shb3b")
+region = Rect2(720, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y883"]
+atlas = ExtResource("1_shb3b")
+region = Rect2(840, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcq1l"]
+atlas = ExtResource("1_shb3b")
+region = Rect2(960, 0, 120, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68m3d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok07u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nekku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hs33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skeu6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ptnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1wal")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vwfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y883")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcq1l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="mainScene" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HTTPRequest"]
+sprite_frames = SubResource("SpriteFrames_68m3d")
+frame_progress = 0.262703
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="HTTPRequest/AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HTTPRequest/AnimatedSprite2D/CharacterBody2D"]
