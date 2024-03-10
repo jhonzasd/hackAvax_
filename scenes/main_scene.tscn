@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://b6iaky5xwmk8s"]
+[gd_scene load_steps=26 format=3 uid="uid://b6iaky5xwmk8s"]
 
 [ext_resource type="Texture2D" uid="uid://bxqc800caen63" path="res://gameAssets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Idle.png" id="1_shb3b"]
+[ext_resource type="Script" path="res://HTTPRequest.gd" id="1_wvxrd"]
 [ext_resource type="Texture2D" uid="uid://7f6v2xl76r32" path="res://gameAssets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Attack.png" id="3_vgxm1"]
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="3_vnlwp"]
 [ext_resource type="PackedScene" uid="uid://b2cssc7bt4yd5" path="res://scenes/boss.tscn" id="4_dmgkk"]
@@ -789,6 +790,7 @@ animations = [{
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("1_wvxrd")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(24, 0)
