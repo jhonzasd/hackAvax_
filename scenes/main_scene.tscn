@@ -1,11 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6iaky5xwmk8s"]
+[gd_scene load_steps=37 format=3 uid="uid://b6iaky5xwmk8s"]
 
+[ext_resource type="Script" path="res://scripts/HTTPhandler.gd" id="1_ibjl2"]
 [ext_resource type="Texture2D" uid="uid://bxqc800caen63" path="res://gameAssets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Idle.png" id="1_shb3b"]
-[ext_resource type="Script" path="res://HTTPRequest.gd" id="1_wvxrd"]
 [ext_resource type="Texture2D" uid="uid://7f6v2xl76r32" path="res://gameAssets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Attack.png" id="3_vgxm1"]
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="3_vnlwp"]
 [ext_resource type="PackedScene" uid="uid://b2cssc7bt4yd5" path="res://scenes/boss.tscn" id="4_dmgkk"]
 [ext_resource type="Texture2D" uid="uid://d4ldh3x6rtsle" path="res://gameAssets/Pixel Art Platformer - Village Props v2.3.0/Texture/TX Tileset Ground.png" id="4_ixohj"]
+[ext_resource type="Texture2D" uid="uid://bkxqjrvpxeox" path="res://gameAssets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/camiar arreglado arreglado .png" id="6_urvo6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fvqpq"]
 texture = ExtResource("4_ixohj")
@@ -731,6 +732,46 @@ region = Rect2(840, 0, 120, 80)
 atlas = ExtResource("1_shb3b")
 region = Rect2(960, 0, 120, 80)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ejka"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(0, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbiv7"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(32, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ryk5"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(64, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n278q"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(96, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir5re"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(128, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enkut"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(160, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uphbm"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(192, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbqde"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(224, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii06u"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(256, 0, 32, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haejx"]
+atlas = ExtResource("6_urvo6")
+region = Rect2(288, 0, 32, 80)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_68m3d"]
 animations = [{
 "frames": [{
@@ -781,16 +822,53 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ejka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbiv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ryk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n278q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir5re")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enkut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uphbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbqde")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii06u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haejx")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
 }]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rpyhl"]
 
 [node name="mainScene" type="Node2D"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="HTTPhandler" type="Node2D" parent="."]
+script = ExtResource("1_ibjl2")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
-script = ExtResource("1_wvxrd")
+[node name="HTTPRequest" type="HTTPRequest" parent="HTTPhandler"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(24, 0)
@@ -813,10 +891,13 @@ position = Vector2(-5, 21)
 shape = SubResource("CapsuleShape2D_rcwvm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(-8, 8)
+scale = Vector2(1, 1.025)
 sprite_frames = SubResource("SpriteFrames_68m3d")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.581174
+frame_progress = 0.611388
+offset = Vector2(0, -10)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-8, 16)
@@ -831,3 +912,5 @@ libraries = {
 
 [node name="Boss1" parent="." instance=ExtResource("4_dmgkk")]
 position = Vector2(318, 27)
+
+[connection signal="request_completed" from="HTTPhandler/HTTPRequest" to="HTTPhandler" method="_on_http_request_request_completed"]

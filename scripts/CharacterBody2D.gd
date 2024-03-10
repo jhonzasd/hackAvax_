@@ -10,6 +10,9 @@ const JUMP_VELOCITY = -400.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	isAttacking = false
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -32,26 +35,31 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	if Input.is_action_just_pressed("ui_down"):
-		isAttacking = true
+		isAttacking = !isAttacking
 		print(isAttacking)
-		
-	
-	if isAttacking:
-		_checkForAttack()
-	
-	move_and_slide()
-	
 
-func _checkForAttack():
-	print('atacando')
-	if isAttacking == false:
-		animatedSprite.play("idle")
-	
-	else: 
-		print("else")
+	if isAttacking:
 		animatedSprite.play("attack")
-		isAttacking = false
-		print(isAttacking)
+	else:
+		if is_on_floor() and direction != 0:
+			animatedSprite.play("run")
+			
+		else:
+			animatedSprite.play("idle")
+
+	move_and_slide()
+
+#
+#func _checkForAttack():
+	#print('atacando')
+	#if isAttacking == false:
+		#animatedSprite.play("idle")
+	#
+	#elif isAttacking == true && Input.is_action_pressed("ui_down"): 
+		#print("else")
 		
+		#animatedSprite.play("attack")
+		#isAttacking = false
+		#print(isAttacking)
 
 
