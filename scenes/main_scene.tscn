@@ -1,7 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6iaky5xwmk8s"]
+[gd_scene load_steps=25 format=3 uid="uid://b6iaky5xwmk8s"]
 
 [ext_resource type="Texture2D" uid="uid://bxqc800caen63" path="res://gameAssets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Idle.png" id="1_shb3b"]
+[ext_resource type="Texture2D" uid="uid://7f6v2xl76r32" path="res://gameAssets/FreeKnight_v1/Colour1/Outline/120x80_PNGSheets/_Attack.png" id="3_vgxm1"]
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="3_vnlwp"]
+[ext_resource type="PackedScene" uid="uid://b2cssc7bt4yd5" path="res://scenes/boss.tscn" id="4_dmgkk"]
 [ext_resource type="Texture2D" uid="uid://d4ldh3x6rtsle" path="res://gameAssets/Pixel Art Platformer - Village Props v2.3.0/Texture/TX Tileset Ground.png" id="4_ixohj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fvqpq"]
@@ -676,6 +678,22 @@ size = Vector2(432, 96)
 radius = 9.0
 height = 38.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o6wd"]
+atlas = ExtResource("3_vgxm1")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcnbv"]
+atlas = ExtResource("3_vgxm1")
+region = Rect2(120, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18w64"]
+atlas = ExtResource("3_vgxm1")
+region = Rect2(240, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jebw1"]
+atlas = ExtResource("3_vgxm1")
+region = Rect2(360, 0, 120, 80)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ok07u"]
 atlas = ExtResource("1_shb3b")
 region = Rect2(0, 0, 120, 80)
@@ -716,6 +734,23 @@ region = Rect2(960, 0, 120, 80)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7o6wd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcnbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18w64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jebw1")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ok07u")
 }, {
 "duration": 1.0,
@@ -743,9 +778,11 @@ animations = [{
 "texture": SubResource("AtlasTexture_wcq1l")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 10.0
 }]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpyhl"]
 
 [node name="mainScene" type="Node2D"]
 
@@ -775,11 +812,20 @@ shape = SubResource("CapsuleShape2D_rcwvm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_68m3d")
-autoplay = "default"
-frame_progress = 0.591294
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.581174
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(-8, 16)
 zoom = Vector2(3, 3)
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D"]
+libraries = {
+"": SubResource("AnimationLibrary_rpyhl")
+}
+
+[node name="Boss1" parent="." instance=ExtResource("4_dmgkk")]
+position = Vector2(318, 27)

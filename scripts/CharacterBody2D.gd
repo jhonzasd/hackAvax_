@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animatedSprite = $AnimatedSprite2D
+@onready var animationPlayer = $AnimationPlayer
 
-const SPEED = 300.0
+var isAttacking = false
+const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -25,8 +27,31 @@ func _physics_process(delta):
 		velocity.x = direction * SPEED
 
 		# Flip the AnimatedSprite2D when moving left
-		animated_sprite.flip_h = direction < 0
+		animatedSprite.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+	if Input.is_action_just_pressed("ui_down"):
+		isAttacking = true
+		print(isAttacking)
+		
+	
+	if isAttacking:
+		_checkForAttack()
+	
 	move_and_slide()
+	
+
+func _checkForAttack():
+	print('atacando')
+	if isAttacking == false:
+		animatedSprite.play("idle")
+	
+	else: 
+		print("else")
+		animatedSprite.play("attack")
+		isAttacking = false
+		print(isAttacking)
+		
+
+

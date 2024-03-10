@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2cssc7bt4yd5"]
+
+[ext_resource type="Texture2D" uid="uid://cqw7ou087ei7r" path="res://gameAssets/Bandits/Sprites/Heavy Bandit/HeavyBandit.png" id="1_dhhg6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8osmj"]
+atlas = ExtResource("1_dhhg6")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c6uh"]
+atlas = ExtResource("1_dhhg6")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dsl7"]
+atlas = ExtResource("1_dhhg6")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vufh1"]
+atlas = ExtResource("1_dhhg6")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vmbdq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8osmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c6uh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dsl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vufh1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cm116"]
+radius = 8.0
+height = 40.0
+
+[node name="Boss1" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vmbdq")
+autoplay = "default"
+frame_progress = 0.250012
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_cm116")
